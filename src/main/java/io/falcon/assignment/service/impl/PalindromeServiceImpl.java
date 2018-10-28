@@ -30,18 +30,30 @@ public class PalindromeServiceImpl implements PalindromeService {
 		List<Test> testList = palindromeRepository.findAll();
 		List<TestEntry> testEntryList =  new ArrayList<>();
 		for (Test test : testList) {
-			int size = calculate_longest_palindrom();
+			int size = calculate_longest_palindrom(test.getText().toLowerCase());
 			testEntryList.add(new TestEntry(new Timestamp(test.getId()),test.getText(),size));
 		}
 		
-		return null;
+		return testEntryList;
 	}
 
 	
-	private int calculate_longest_palindrom() {
-		
-		
-		return 2;
+	private int calculate_longest_palindrom(String text) {
+		 int right = 0, left = 0;
+		 text=text.replaceAll("\\s+","");
+	        String palindrome = "", longest = "";
+	        for (int center = 1; center < text.length() - 1; center++) {
+	            left = center - 1;  right = center + 1;
+	            while (left >= 0 && right < text.length()) {
+	                if (text.charAt(left) != text.charAt(right)) {
+	                    break;
+	                }
+	                palindrome = text.substring(left, right + 1);
+	                longest = palindrome.length() > longest.length() ? palindrome : longest;
+	                left--;  right++;
+	            }
+	        }
+	        return longest.length();
 	}
 	
 	
