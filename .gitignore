@@ -2,5 +2,6 @@ target
 .metadata
 .project
 .settings
+.classpath
 bin
 *.jar
