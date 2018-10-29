@@ -7,7 +7,7 @@ import io.falcon.assignment.entity.Test;
 
 public interface PalindromeService {
 
-	void savePalindrome(String palindromeStr);
+	void savePalindrome(String palindromeStr,Long timeStamp);
 	List<TestEntry> getPalindromes();
 	
 	

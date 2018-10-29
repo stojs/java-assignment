@@ -2,6 +2,7 @@ package io.falcon.assignment.controller;
 
 
 import io.falcon.assignment.domain.TestEntry;
+import io.falcon.assignment.model.Test;
 import io.falcon.assignment.service.PalindromeService;
 
 import java.util.List;
@@ -30,12 +31,13 @@ public class PalindromeController {
     
     
     @PostMapping("/add")
-    public ResponseEntity<Void> savePalindrome(@RequestBody String palindromeStr) {
-    	
+    public ResponseEntity<Void> savePalindrome(@RequestBody Test test) {
+        String palindromeStr =test.getContent();
+        Long timeStamp = test.getTimestamp();
     	Pattern p = Pattern.compile("^[ A-Za-z]+$");
     	Matcher matcher = p.matcher(palindromeStr);
     	if (matcher.matches()) {
-    	   palindromeService.savePalindrome(palindromeStr);
+    	   palindromeService.savePalindrome(palindromeStr,timeStamp);
     	   return new ResponseEntity<Void>(HttpStatus.CREATED);
     	}else {
     		return new ResponseEntity<Void>(HttpStatus.CONFLICT);

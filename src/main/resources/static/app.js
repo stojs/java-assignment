@@ -22,7 +22,7 @@ var divBlock = "<tr> <td>" +i + "</td> <td style='width: 30%;'>"
 }	
 
 function saveContent(){
-		console.log($('#content').val());
+/* 		console.log($('#content').val());
 		$.ajax({
 			traditional: true,
 			type : "POST",
@@ -32,5 +32,23 @@ function saveContent(){
 			success: function() {
                    window.location.reload();
                },
-		});
+		}); */
+		
+		  var test = {
+            timestamp:$.now(),
+            content:$("#content").val()
+        }
+
+        $('#content').html('saving..');
+
+        $.ajax({
+            url: '/app/add',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function () {
+               
+            },
+            data: JSON.stringify(test)
+        });
 }

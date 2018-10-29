@@ -20,8 +20,8 @@ public class PalindromeServiceImpl implements PalindromeService {
 	private PalindromeRepository palindromeRepository;
 
 	@Override
-	public void savePalindrome(String palindromeStr) {
-		Test test = new Test(System.currentTimeMillis(), palindromeStr);
+	public void savePalindrome(String palindromeStr,Long timeStamp) {
+		Test test = new Test(timeStamp, palindromeStr);
 		palindromeRepository.save(test);
 	}
 
