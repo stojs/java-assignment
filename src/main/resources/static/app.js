@@ -11,8 +11,9 @@ function getMessages() {
 
 function getMessage(testEntry, prepend) {
     i++;
+    var dateNow = new Date(testEntry.timestamp);
     var divBlock = "<tr> <td>" + i + "</td> <td style='width: 30%;'>"
-            + testEntry.timestamp + "</td> <td style='width: 35%;'>"
+            + dateNow.format("yyyy-mm-dd HH:MM:ss o") + "</td> <td style='width: 35%;'>"
             + testEntry.content + "</td><td>"
             + testEntry.size + " </td> </tr> ";
     if (prepend !== "prepend") {
@@ -32,13 +33,13 @@ function connect() {
     stompClient = Stomp.client('ws://localhost:8080/add');
     stompClient.debug = null;
     stompClient.connect({}, function (frame) {
-        var obj =null;
+        var obj = null;
         var date = null;
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/messages', function (message) {
             obj = JSON.parse(message.body);
-            date=new Date(obj.timestamp);
+            date = new Date(obj.timestamp);
             showMessage(date.format("yyyy-mm-dd HH:MM:ss o") + " " + obj.content);
         });
     });

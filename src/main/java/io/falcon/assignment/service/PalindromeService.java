@@ -1,15 +1,11 @@
 package io.falcon.assignment.service;
 
+import io.falcon.assignment.model.TestModel;
 import java.util.List;
-
-import io.falcon.assignment.domain.TestEntry;
-import io.falcon.assignment.entity.Test;
 
 public interface PalindromeService {
 
-	void savePalindrome(String palindromeStr,Long timeStamp);
-	List<TestEntry> getPalindromes();
-	
-	
+    void savePalindrome(String palindromeStr, Long timeStamp);
 
+    List<TestModel> getPalindromes();
 }
