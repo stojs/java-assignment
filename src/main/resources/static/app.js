@@ -66,18 +66,15 @@ function saveContent() {
         timestamp: $.now(),
         content: $("#content").val()
     }
-
-    $('#content').html('saving..');
-
     $.ajax({
         url: '/app/add',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
+        data: JSON.stringify(test),
         success: function () {
-
-        },
-        data: JSON.stringify(test)
+            alert("Only alphabetic characters are allowed! ");
+        }
     });
     if (stompClient != null) {
         stompClient.send("/app/add", {}, JSON.stringify(test));

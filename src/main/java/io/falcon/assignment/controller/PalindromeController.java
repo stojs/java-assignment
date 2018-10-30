@@ -31,9 +31,9 @@ public class PalindromeController {
         Matcher matcher = p.matcher(palindromeStr);
         if (matcher.matches()) {
             palindromeService.savePalindrome(palindromeStr, timeStamp);
-            return new ResponseEntity<Void>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 
