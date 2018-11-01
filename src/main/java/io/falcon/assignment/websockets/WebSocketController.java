@@ -12,7 +12,7 @@ public class WebSocketController {
 
     @MessageMapping("/add")
     @SendTo("/topic/messages")
-    public TestModel greeting(TestModel test) throws Exception {
+    public TestModel sendMessage(TestModel test) throws Exception {
         log.info("Received: {}", test.getContent());
         return test;
     }
