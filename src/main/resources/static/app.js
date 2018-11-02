@@ -76,7 +76,7 @@ function saveContent() {
             alert("Only alphabetic characters are allowed! ");
         }
     });
-    if (stompClient != null) {
+    if (stompClient != null && test["content"].match("^[ A-Za-z]+$")) {
         stompClient.send("/app/add", {}, JSON.stringify(test));
     }
 
